@@ -300,10 +300,12 @@ window.onload = function () {
 
 	// timer
 	if($(".js-timer").length){
+		var dealEnd = new Date();
+		dealEnd.setDate(dealEnd.getDate() + 120);
 		$('.js-timer').syotimer({
-			year: 2021,
-			month: 3,
-			day: 10
+			year: dealEnd.getFullYear(),
+			month: dealEnd.getMonth() + 1,
+			day: dealEnd.getDate()
 		});		
 	}
 	// timer end

@@ -3,7 +3,7 @@ import urllib.request
 from pathlib import Path
 from PIL import Image, ImageEnhance
 
-from saree_catalog import BANNER_SOURCES, HERO_SLIDES, SAREE_CATALOG
+from saree_catalog import BANNER_SOURCES, DEAL_OF_WEEK, HERO_SLIDES, SAREE_CATALOG
 
 ROOT = Path(__file__).resolve().parents[1]
 IMG = ROOT / "assets/img"
@@ -12,6 +12,7 @@ POOL = IMG / "_pool"
 
 PRODUCT_SIZE = (600, 800)
 PRODUCT_DETAIL_SIZE = (900, 1100)
+DEAL_SIZE = (1040, 800)
 BANNER_SIZE = (1600, 620)
 HERO_SIZE = (1040, 800)
 COLLECTION_SIZE = (600, 760)
@@ -104,6 +105,14 @@ def build_hero_slides(catalog_images: dict[str, Image.Image]) -> None:
         print(f"hero {slide['file']} -> {slide['name']}")
 
 
+def build_deal_image(catalog_images: dict[str, Image.Image]) -> None:
+    source = catalog_images[DEAL_OF_WEEK["catalog_file"]]
+    pool = Image.open(POOL / DEAL_OF_WEEK["catalog_file"]).convert("RGB")
+    im = brighten(cover_crop(pool, DEAL_SIZE, anchor="right"), 1.18)
+    save_jpg(im, IMG / DEAL_OF_WEEK["file"])
+    print(f"deal {DEAL_OF_WEEK['file']} -> {DEAL_OF_WEEK['name']}")
+
+
 def build_banners(catalog_images: dict[str, Image.Image]) -> None:
     banner_pool: list[Image.Image] = []
     for i, url in enumerate(BANNER_SOURCES):
@@ -121,7 +130,7 @@ def build_banners(catalog_images: dict[str, Image.Image]) -> None:
         "banner-about.jpg", "banner-blog.jpg", "banner-cart.jpg", "banner-checkout.jpg",
         "banner-collections.jpg", "banner-contacts.jpg", "banner-faq.jpg", "banner-login.jpg",
         "banner-newsletter.jpg", "banner-profile.jpg", "banner-shop.jpg", "banner-wishlist.jpg",
-        "banner-404.jpg", "login-bg.jpg", "404-bg.jpg", "deal-of-the-week.jpg",
+        "banner-404.jpg", "login-bg.jpg", "404-bg.jpg",
         "sale-image_1.jpg", "sale-image_2.jpg", "sale-image_3.jpg",
     ]
     collection_files = [f"collections-image_{i}.jpg" for i in range(1, 6)]
@@ -130,7 +139,7 @@ def build_banners(catalog_images: dict[str, Image.Image]) -> None:
         if name in hero_files:
             continue
         src = banner_pool[i % len(banner_pool)]
-        if name.startswith("sale-image") or name == "deal-of-the-week.jpg":
+        if name.startswith("sale-image"):
             im = brighten(cover_crop(src, (1200, 760), anchor="top"), 1.08)
         else:
             im = brighten(cover_crop(src, BANNER_SIZE, anchor="top"), 1.08)
@@ -239,6 +248,7 @@ def sync_hero_slides() -> None:
 def main() -> None:
     catalog_images = build_product_images()
     build_hero_slides(catalog_images)
+    build_deal_image(catalog_images)
     build_banners(catalog_images)
     build_supporting_images(catalog_images)
     sync_product_names()

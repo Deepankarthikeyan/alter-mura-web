@@ -93,6 +93,12 @@ HERO_SLIDES = [
     },
 ]
 
+DEAL_OF_WEEK = {
+    "file": "deal-of-the-week.jpg",
+    "catalog_file": "product-item_3.jpg",
+    "name": "Cotton Handloom Saree",
+}
+
 # Light saree banners for inner pages
 BANNER_SOURCES = [
     "https://images.unsplash.com/photo-1742677143629-b9784beab2e1?w=1600&q=80&auto=format&fit=crop&crop=top",
