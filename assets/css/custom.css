@@ -22,6 +22,48 @@
     padding-top: 20px;
 }
 
+/* Light, text-friendly banner/image treatments */
+.inner-top__image,
+.main-slider__image,
+.deal-block__image,
+.season-sale__image,
+.inner-deal__image,
+.sale-banner__image,
+.newsletter__banner,
+.collection__image,
+.login-page__banner {
+    position: relative;
+}
+
+.inner-top__image::after,
+.deal-block__image::after,
+.season-sale__image::after,
+.inner-deal__image::after,
+.sale-banner__image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.45) 38%, rgba(255, 255, 255, 0.08) 72%, rgba(255, 255, 255, 0) 100%);
+}
+
+.main-slider__image::after {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.18) 42%, rgba(255, 255, 255, 0) 70%) !important;
+}
+
+.collection__image::before {
+    opacity: 0 !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+}
+
+.short-item__image,
+.product-slider__image,
+.wishlist__image,
+.side-cart__image,
+.reviewed__image {
+    filter: brightness(1.08) contrast(1.02);
+}
+
 @media screen and (max-width: 760px) {
     .logo__image {
         height: 38px;
