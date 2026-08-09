@@ -80,22 +80,16 @@ HERO_SLIDES = [
         "file": "first-screen-image.jpg",
         "catalog_file": "product-item_2.jpg",
         "name": "Banarasi Silk Saree",
-        "title": "Discover Elegant <br>Saree Collection",
-        "subtitle": "<b>new</b> silk sarees",
     },
     {
         "file": "deal-of-the-week-inner.jpg",
         "catalog_file": "product-item_5.jpg",
         "name": "Bridal Silk Saree",
-        "title": "Bridal Silk <br>Saree Collection",
-        "subtitle": "<b>wedding</b> specials",
     },
     {
         "file": "slider-banner.jpg",
         "catalog_file": "product-item_4.jpg",
         "name": "Designer Party Saree",
-        "title": "Designer Party <br>Saree Styles",
-        "subtitle": "<b>festive</b> collection",
     },
 ]
 

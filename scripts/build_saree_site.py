@@ -1,7 +1,7 @@
 import re
 import urllib.request
 from pathlib import Path
-from PIL import Image, ImageEnhance, ImageDraw
+from PIL import Image, ImageEnhance
 
 from saree_catalog import BANNER_SOURCES, HERO_SLIDES, SAREE_CATALOG
 
@@ -83,18 +83,6 @@ def save_jpg(im: Image.Image, path: Path, quality: int = 82) -> None:
     im.save(path, "JPEG", quality=quality, optimize=True, progressive=True)
 
 
-def add_text_fade(im: Image.Image, strength: float = 0.75) -> Image.Image:
-    im = brighten(im, 1.12)
-    overlay = Image.new("RGBA", im.size, (255, 255, 255, 0))
-    draw = ImageDraw.Draw(overlay)
-    w, h = im.size
-    for x in range(w):
-        alpha = int(255 * strength * (1 - x / w) ** 1.1)
-        draw.line([(x, 0), (x, h)], fill=(255, 255, 255, alpha))
-    base = im.convert("RGBA")
-    return Image.alpha_composite(base, overlay).convert("RGB")
-
-
 def build_product_images() -> dict[str, Image.Image]:
     catalog_images: dict[str, Image.Image] = {}
     for item in SAREE_CATALOG:
@@ -110,9 +98,8 @@ def build_product_images() -> dict[str, Image.Image]:
 
 def build_hero_slides(catalog_images: dict[str, Image.Image]) -> None:
     for slide in HERO_SLIDES:
-        im = brighten(catalog_images[slide["catalog_file"]].copy(), 1.08)
         source = Image.open(POOL / slide["catalog_file"]).convert("RGB")
-        hero = add_text_fade(cover_crop(source, HERO_SIZE, anchor="right"), strength=0.82)
+        hero = brighten(cover_crop(source, HERO_SIZE, anchor="right"), 1.08)
         save_jpg(hero, IMG / slide["file"])
         print(f"hero {slide['file']} -> {slide['name']}")
 
@@ -144,7 +131,7 @@ def build_banners(catalog_images: dict[str, Image.Image]) -> None:
             continue
         src = banner_pool[i % len(banner_pool)]
         if name.startswith("sale-image") or name == "deal-of-the-week.jpg":
-            im = add_text_fade(cover_crop(src, (1200, 760), anchor="top"), strength=0.7)
+            im = brighten(cover_crop(src, (1200, 760), anchor="top"), 1.08)
         else:
             im = brighten(cover_crop(src, BANNER_SIZE, anchor="top"), 1.08)
         save_jpg(im, IMG / name)
@@ -238,18 +225,6 @@ def sync_hero_slides() -> None:
         slide_html = re.sub(
             r'data-bg="assets/img/[^"]+"',
             f'data-bg="assets/img/{meta["file"]}"',
-            slide_html,
-            count=1,
-        )
-        slide_html = re.sub(
-            r'(<span class="main-slider__subtitle category-subtitle">).*?(</span>)',
-            rf'\1{meta["subtitle"]}\2',
-            slide_html,
-            count=1,
-        )
-        slide_html = re.sub(
-            r'(<h2 class="main-slider__title">).*?(</h2>)',
-            rf'\1{meta["title"]}\2',
             slide_html,
             count=1,
         )
