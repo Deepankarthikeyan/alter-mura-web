@@ -20,24 +20,28 @@
 
 .header__main {
     padding-top: 20px;
-    position: relative;
 }
 
-/* Center logo in header bar */
-.header__main .logo {
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    width: fit-content;
-    height: fit-content;
-    z-index: 3;
+/* True center logo: equal-width side columns + logo in the middle */
+.header__main > .header__cols {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
 }
 
-.header__left > .header__cols > .header__col:nth-child(2) {
-    width: 0;
-    min-width: 0;
-    padding: 0;
-    overflow: visible;
+.header__left {
+    grid-column: 1;
+    justify-self: start;
+}
+
+.header__center {
+    grid-column: 2;
+    justify-self: center;
+}
+
+.header__right {
+    grid-column: 3;
+    justify-self: end;
 }
 
 .footer-nav__text {
