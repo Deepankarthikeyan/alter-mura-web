@@ -3,7 +3,7 @@ import urllib.request
 from pathlib import Path
 from PIL import Image, ImageEnhance, ImageDraw
 
-from saree_catalog import BANNER_SOURCES, SAREE_CATALOG
+from saree_catalog import BANNER_SOURCES, HERO_SLIDES, SAREE_CATALOG
 
 ROOT = Path(__file__).resolve().parents[1]
 IMG = ROOT / "assets/img"
@@ -23,6 +23,7 @@ NON_SAREE_PHRASES = [
     "MuRa@23 - silk saree",
     "MuRa@23 - catton shirt",
     "MuRa@23 - cotton shirt",
+    "knitted sweater",
     "How to choose a dress for a special occasion?",
     "How to choose a dress for&nbsp;a special occasion?",
     "Women's fashion: how not to dress in 2020",
@@ -82,13 +83,13 @@ def save_jpg(im: Image.Image, path: Path, quality: int = 82) -> None:
     im.save(path, "JPEG", quality=quality, optimize=True, progressive=True)
 
 
-def add_text_fade(im: Image.Image) -> Image.Image:
-    im = brighten(im, 1.1)
+def add_text_fade(im: Image.Image, strength: float = 0.75) -> Image.Image:
+    im = brighten(im, 1.12)
     overlay = Image.new("RGBA", im.size, (255, 255, 255, 0))
     draw = ImageDraw.Draw(overlay)
     w, h = im.size
     for x in range(w):
-        alpha = int(200 * (1 - x / w) ** 1.3)
+        alpha = int(255 * strength * (1 - x / w) ** 1.1)
         draw.line([(x, 0), (x, h)], fill=(255, 255, 255, alpha))
     base = im.convert("RGBA")
     return Image.alpha_composite(base, overlay).convert("RGB")
@@ -107,6 +108,15 @@ def build_product_images() -> dict[str, Image.Image]:
     return catalog_images
 
 
+def build_hero_slides(catalog_images: dict[str, Image.Image]) -> None:
+    for slide in HERO_SLIDES:
+        im = brighten(catalog_images[slide["catalog_file"]].copy(), 1.08)
+        source = Image.open(POOL / slide["catalog_file"]).convert("RGB")
+        hero = add_text_fade(cover_crop(source, HERO_SIZE, anchor="right"), strength=0.82)
+        save_jpg(hero, IMG / slide["file"])
+        print(f"hero {slide['file']} -> {slide['name']}")
+
+
 def build_banners(catalog_images: dict[str, Image.Image]) -> None:
     banner_pool: list[Image.Image] = []
     for i, url in enumerate(BANNER_SOURCES):
@@ -119,22 +129,22 @@ def build_banners(catalog_images: dict[str, Image.Image]) -> None:
     if not banner_pool:
         banner_pool = list(catalog_images.values())
 
+    hero_files = {s["file"] for s in HERO_SLIDES}
     banner_files = [
         "banner-about.jpg", "banner-blog.jpg", "banner-cart.jpg", "banner-checkout.jpg",
         "banner-collections.jpg", "banner-contacts.jpg", "banner-faq.jpg", "banner-login.jpg",
         "banner-newsletter.jpg", "banner-profile.jpg", "banner-shop.jpg", "banner-wishlist.jpg",
-        "banner-404.jpg", "first-screen-image.jpg", "slider-banner.jpg", "login-bg.jpg",
-        "404-bg.jpg", "deal-of-the-week.jpg", "deal-of-the-week-inner.jpg",
+        "banner-404.jpg", "login-bg.jpg", "404-bg.jpg", "deal-of-the-week.jpg",
         "sale-image_1.jpg", "sale-image_2.jpg", "sale-image_3.jpg",
     ]
     collection_files = [f"collections-image_{i}.jpg" for i in range(1, 6)]
 
     for i, name in enumerate(banner_files):
+        if name in hero_files:
+            continue
         src = banner_pool[i % len(banner_pool)]
-        if name in {"first-screen-image.jpg", "slider-banner.jpg", "deal-of-the-week-inner.jpg"}:
-            im = cover_crop(src, HERO_SIZE, anchor="right")
-        elif name.startswith("sale-image") or name.startswith("deal-of-the-week"):
-            im = add_text_fade(cover_crop(src, (1200, 760), anchor="top"))
+        if name.startswith("sale-image") or name == "deal-of-the-week.jpg":
+            im = add_text_fade(cover_crop(src, (1200, 760), anchor="top"), strength=0.7)
         else:
             im = brighten(cover_crop(src, BANNER_SIZE, anchor="top"), 1.08)
         save_jpg(im, IMG / name)
@@ -147,7 +157,6 @@ def build_banners(catalog_images: dict[str, Image.Image]) -> None:
 
 def build_supporting_images(catalog_images: dict[str, Image.Image]) -> None:
     files = {
-        "product-image.jpg": PRODUCT_DETAIL_SIZE,
         "post-content-image.jpg": (1100, 650),
         "post-main-image.jpg": (1100, 650),
     }
@@ -156,20 +165,19 @@ def build_supporting_images(catalog_images: dict[str, Image.Image]) -> None:
 
     for idx, (fname, size) in enumerate(files.items()):
         item = SAREE_CATALOG[idx % len(SAREE_CATALOG)]
-        im = cover_crop(download(item["url"], POOL / f"reuse_{fname}"), size, anchor="top")
-        save_jpg(brighten(im, 1.1), EXAMPLES / fname)
+        im = cover_crop(catalog_images[item["file"]].copy(), size, anchor="top")
+        save_jpg(brighten(im, 1.05), EXAMPLES / fname)
 
-    thumbs = list(catalog_images.values())
     for i in range(1, 5):
-        save_jpg(thumbs[(i - 1) % len(thumbs)], EXAMPLES / f"wishlist-image_{i}.jpg")
-        save_jpg(thumbs[i % len(thumbs)], EXAMPLES / f"order-image_{i}.jpg")
-        save_jpg(thumbs[(i + 1) % len(thumbs)], EXAMPLES / f"review-image_{i}.jpg")
+        save_jpg(catalog_images[SAREE_CATALOG[i - 1]["file"]], EXAMPLES / f"wishlist-image_{i}.jpg")
+        save_jpg(catalog_images[SAREE_CATALOG[i]["file"]], EXAMPLES / f"order-image_{i}.jpg")
+        save_jpg(catalog_images[SAREE_CATALOG[i + 1]["file"]], EXAMPLES / f"review-image_{i}.jpg")
 
-    save_jpg(thumbs[0], EXAMPLES / "author-photo.jpg")
+    save_jpg(catalog_images[SAREE_CATALOG[0]["file"]], EXAMPLES / "author-photo.jpg")
+    save_jpg(catalog_images[SAREE_CATALOG[0]["file"]], EXAMPLES / "product-image.jpg", quality=85)
 
 
 def sync_product_names() -> None:
-    name_by_file = {item["file"]: item["name"] for item in SAREE_CATALOG}
     all_names = [item["name"] for item in SAREE_CATALOG]
 
     for path in ROOT.glob("*.html"):
@@ -178,7 +186,6 @@ def sync_product_names() -> None:
         for phrase, replacement in zip(NON_SAREE_PHRASES, SAREE_BLOG_TITLES + SAREE_BLOG_TITLES):
             text = text.replace(phrase, replacement)
 
-        # Tie each product-item image block to its catalog name
         for item in SAREE_CATALOG:
             fname = item["file"]
             pname = item["name"]
@@ -195,7 +202,6 @@ def sync_product_names() -> None:
                 flags=re.DOTALL,
             )
 
-        # Cart / wishlist / order links: cycle saree names
         idx = 0
 
         def next_name():
@@ -219,11 +225,49 @@ def sync_product_names() -> None:
         print("synced", path.name)
 
 
+def sync_hero_slides() -> None:
+    index = ROOT / "index.html"
+    text = index.read_text()
+    slides = re.findall(r'(<div class="main-slider__item js-slide[^>]*>.*?</div>\s*</div>\s*</div>\s*</div>)', text, flags=re.DOTALL)
+    if len(slides) < len(HERO_SLIDES):
+        print("warning: could not parse all hero slides")
+        return
+
+    new_slides = []
+    for slide_html, meta in zip(slides, HERO_SLIDES):
+        slide_html = re.sub(
+            r'data-bg="assets/img/[^"]+"',
+            f'data-bg="assets/img/{meta["file"]}"',
+            slide_html,
+            count=1,
+        )
+        slide_html = re.sub(
+            r'(<span class="main-slider__subtitle category-subtitle">).*?(</span>)',
+            rf'\1{meta["subtitle"]}\2',
+            slide_html,
+            count=1,
+        )
+        slide_html = re.sub(
+            r'(<h2 class="main-slider__title">).*?(</h2>)',
+            rf'\1{meta["title"]}\2',
+            slide_html,
+            count=1,
+        )
+        new_slides.append(slide_html)
+
+    for old, new in zip(slides, new_slides):
+        text = text.replace(old, new, 1)
+    index.write_text(text)
+    print("synced index hero slides")
+
+
 def main() -> None:
     catalog_images = build_product_images()
+    build_hero_slides(catalog_images)
     build_banners(catalog_images)
     build_supporting_images(catalog_images)
     sync_product_names()
+    sync_hero_slides()
     print("Done: saree catalog built and optimized.")
 
 

@@ -1,4 +1,4 @@
-# Curated saree-only catalog: each product has a unique image and matching name.
+# Curated saree-only catalog. Every URL is a verified woman-in-saree photo from Unsplash.
 SAREE_CATALOG = [
     {
         "id": 1,
@@ -15,7 +15,7 @@ SAREE_CATALOG = [
     {
         "id": 3,
         "name": "Cotton Handloom Saree",
-        "url": "https://images.unsplash.com/photo-1616986491129-3e37cb654c82?w=1200&q=80&auto=format&fit=crop",
+        "url": "https://images.unsplash.com/photo-1706685481823-b8f1a1c11fca?w=1200&q=80&auto=format&fit=crop",
         "file": "product-item_3.jpg",
     },
     {
@@ -51,7 +51,7 @@ SAREE_CATALOG = [
     {
         "id": 9,
         "name": "Mysore Silk Saree",
-        "url": "https://images.unsplash.com/photo-1698657169196-29b4783810c2?w=1200&q=80&auto=format&fit=crop",
+        "url": "https://images.unsplash.com/photo-1698657169196-29b4783810c2?w=1200&q=80&auto=format&fit=crop&crop=center",
         "file": "product-item_9.jpg",
     },
     {
@@ -63,24 +63,49 @@ SAREE_CATALOG = [
     {
         "id": 11,
         "name": "Tussar Silk Saree",
-        "url": "https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "url": "https://images.unsplash.com/photo-1749317776467-6dcf2bfbd26b?w=1200&q=80&auto=format&fit=crop",
         "file": "product-item_11.jpg",
     },
     {
         "id": 12,
         "name": "Patola Silk Saree",
-        "url": "https://images.pexels.com/photos/6311391/pexels-photo-6311391.jpeg?auto=compress&cs=tinysrgb&w=1200",
+        "url": "https://images.unsplash.com/photo-1771654805161-442c6aab7b55?w=1200&q=80&auto=format&fit=crop",
         "file": "product-item_12.jpg",
     },
 ]
 
-# Light saree banners only (wide crops)
+# Homepage hero slider: light sarees only, matched to slide copy
+HERO_SLIDES = [
+    {
+        "file": "first-screen-image.jpg",
+        "catalog_file": "product-item_2.jpg",
+        "name": "Banarasi Silk Saree",
+        "title": "Discover Elegant <br>Saree Collection",
+        "subtitle": "<b>new</b> silk sarees",
+    },
+    {
+        "file": "deal-of-the-week-inner.jpg",
+        "catalog_file": "product-item_5.jpg",
+        "name": "Bridal Silk Saree",
+        "title": "Bridal Silk <br>Saree Collection",
+        "subtitle": "<b>wedding</b> specials",
+    },
+    {
+        "file": "slider-banner.jpg",
+        "catalog_file": "product-item_4.jpg",
+        "name": "Designer Party Saree",
+        "title": "Designer Party <br>Saree Styles",
+        "subtitle": "<b>festive</b> collection",
+    },
+]
+
+# Light saree banners for inner pages
 BANNER_SOURCES = [
     "https://images.unsplash.com/photo-1742677143629-b9784beab2e1?w=1600&q=80&auto=format&fit=crop&crop=top",
     "https://images.unsplash.com/photo-1684961415565-80383f48c0c2?w=1600&q=80&auto=format&fit=crop&crop=top",
-    "https://images.unsplash.com/photo-1698657169196-29b4783810c2?w=1600&q=80&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1678705730064-a7ecbab4b3fb?w=1600&q=80&auto=format&fit=crop&crop=top",
     "https://images.unsplash.com/photo-1692992193981-d3d92fabd9cb?w=1600&q=80&auto=format&fit=crop&crop=top",
+    "https://images.unsplash.com/photo-1678705730064-a7ecbab4b3fb?w=1600&q=80&auto=format&fit=crop&crop=top",
+    "https://images.unsplash.com/photo-1749317776467-6dcf2bfbd26b?w=1600&q=80&auto=format&fit=crop&crop=top",
 ]
 
 SAREE_NAMES = [item["name"] for item in SAREE_CATALOG]
