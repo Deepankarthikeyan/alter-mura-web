@@ -3,7 +3,7 @@ import urllib.request
 from pathlib import Path
 from PIL import Image, ImageEnhance
 
-from saree_catalog import BANNER_SOURCES, DEAL_OF_WEEK, HERO_SLIDES, SAREE_CATALOG, SEASON_SALE
+from saree_catalog import BANNER_SOURCES, DEAL_OF_WEEK, HERO_SLIDES, PAGE_BANNERS, SAREE_CATALOG, SEASON_SALE
 
 ROOT = Path(__file__).resolve().parents[1]
 IMG = ROOT / "assets/img"
@@ -82,6 +82,9 @@ def cover_crop(im: Image.Image, size: tuple[int, int], anchor: str = "center") -
     elif anchor == "right":
         left = max(0, nw - tw)
         top = max(0, (nh - th) // 4)
+    elif anchor == "saree":
+        # Wide banners: show mid-body saree drape instead of face close-up
+        top = max(0, int((nh - th) * 0.42))
     return im.crop((left, top, left + tw, top + th))
 
 
@@ -120,6 +123,15 @@ def build_season_sale_images() -> None:
         print(f"season sale {fname} -> {meta['name']}")
 
 
+def build_page_banners() -> None:
+    for fname, meta in PAGE_BANNERS.items():
+        pool = POOL / f"page_{fname}"
+        source = download(meta["url"], pool)
+        im = brighten(cover_crop(source, BANNER_SIZE, anchor=meta.get("anchor", "saree")), 1.06)
+        save_jpg(im, IMG / fname)
+        print(f"page banner {fname} -> {meta['name']}")
+
+
 def build_deal_image(catalog_images: dict[str, Image.Image]) -> None:
     meta = DEAL_OF_WEEK
     if meta.get("url"):
@@ -147,6 +159,7 @@ def build_banners(catalog_images: dict[str, Image.Image]) -> None:
 
     hero_files = {s["file"] for s in HERO_SLIDES}
     season_sale_files = set(SEASON_SALE)
+    page_banner_files = set(PAGE_BANNERS)
     banner_files = [
         "banner-about.jpg", "banner-blog.jpg", "banner-cart.jpg", "banner-checkout.jpg",
         "banner-collections.jpg", "banner-contacts.jpg", "banner-faq.jpg", "banner-login.jpg",
@@ -156,7 +169,7 @@ def build_banners(catalog_images: dict[str, Image.Image]) -> None:
     collection_files = [f"collections-image_{i}.jpg" for i in range(1, 6)]
 
     for i, name in enumerate(banner_files):
-        if name in hero_files:
+        if name in hero_files or name in page_banner_files:
             continue
         src = banner_pool[i % len(banner_pool)]
         im = brighten(cover_crop(src, BANNER_SIZE, anchor="top"), 1.08)
@@ -269,6 +282,7 @@ def main() -> None:
     build_hero_slides(catalog_images)
     build_deal_image(catalog_images)
     build_season_sale_images()
+    build_page_banners()
     build_banners(catalog_images)
     build_supporting_images(catalog_images)
     sync_product_names()

@@ -135,6 +135,20 @@ SEASON_SALE = {
     },
 }
 
+# Page banners cropped to show saree fabric, not face close-ups
+PAGE_BANNERS = {
+    "banner-contacts.jpg": {
+        "url": u("1572470176170-98fa8abcb741", "center"),
+        "name": "Silk Saree Drape",
+        "anchor": "saree",
+    },
+    "banner-blog.jpg": {
+        "url": u("1692992193981-d3d92fabd9cb", "center"),
+        "name": "Designer Party Saree",
+        "anchor": "saree",
+    },
+}
+
 BANNER_SOURCES = [
     u("1742677143629-b9784beab2e1", "top"),
     u("1771507056578-f9675a2a8f8a", "top"),
