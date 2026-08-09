@@ -3,7 +3,7 @@ import urllib.request
 from pathlib import Path
 from PIL import Image, ImageEnhance
 
-from saree_catalog import BANNER_SOURCES, DEAL_OF_WEEK, HERO_SLIDES, SAREE_CATALOG
+from saree_catalog import BANNER_SOURCES, DEAL_OF_WEEK, HERO_SLIDES, SAREE_CATALOG, SEASON_SALE
 
 ROOT = Path(__file__).resolve().parents[1]
 IMG = ROOT / "assets/img"
@@ -63,6 +63,12 @@ def brighten(im: Image.Image, factor: float = 1.15) -> Image.Image:
     return im
 
 
+def darken(im: Image.Image, brightness: float = 0.85, contrast: float = 1.06) -> Image.Image:
+    im = ImageEnhance.Brightness(im).enhance(brightness)
+    im = ImageEnhance.Contrast(im).enhance(contrast)
+    return im
+
+
 def cover_crop(im: Image.Image, size: tuple[int, int], anchor: str = "center") -> Image.Image:
     tw, th = size
     sw, sh = im.size
@@ -105,6 +111,15 @@ def build_hero_slides(catalog_images: dict[str, Image.Image]) -> None:
         print(f"hero {slide['file']} -> {slide['name']}")
 
 
+def build_season_sale_images() -> None:
+    for fname, meta in SEASON_SALE.items():
+        pool = POOL / f"season_{fname}"
+        source = download(meta["url"], pool)
+        im = darken(cover_crop(source, meta["size"], anchor=meta.get("anchor", "center")))
+        save_jpg(im, IMG / fname)
+        print(f"season sale {fname} -> {meta['name']}")
+
+
 def build_deal_image(catalog_images: dict[str, Image.Image]) -> None:
     meta = DEAL_OF_WEEK
     if meta.get("url"):
@@ -131,12 +146,12 @@ def build_banners(catalog_images: dict[str, Image.Image]) -> None:
         banner_pool = list(catalog_images.values())
 
     hero_files = {s["file"] for s in HERO_SLIDES}
+    season_sale_files = set(SEASON_SALE)
     banner_files = [
         "banner-about.jpg", "banner-blog.jpg", "banner-cart.jpg", "banner-checkout.jpg",
         "banner-collections.jpg", "banner-contacts.jpg", "banner-faq.jpg", "banner-login.jpg",
         "banner-newsletter.jpg", "banner-profile.jpg", "banner-shop.jpg", "banner-wishlist.jpg",
         "banner-404.jpg", "login-bg.jpg", "404-bg.jpg",
-        "sale-image_1.jpg", "sale-image_2.jpg", "sale-image_3.jpg",
     ]
     collection_files = [f"collections-image_{i}.jpg" for i in range(1, 6)]
 
@@ -144,13 +159,12 @@ def build_banners(catalog_images: dict[str, Image.Image]) -> None:
         if name in hero_files:
             continue
         src = banner_pool[i % len(banner_pool)]
-        if name.startswith("sale-image"):
-            im = brighten(cover_crop(src, (1200, 760), anchor="top"), 1.08)
-        else:
-            im = brighten(cover_crop(src, BANNER_SIZE, anchor="top"), 1.08)
+        im = brighten(cover_crop(src, BANNER_SIZE, anchor="top"), 1.08)
         save_jpg(im, IMG / name)
 
     for i, name in enumerate(collection_files):
+        if name in season_sale_files:
+            continue
         item = SAREE_CATALOG[i % len(SAREE_CATALOG)]
         im = catalog_images[item["file"]]
         save_jpg(cover_crop(im, COLLECTION_SIZE, anchor="top"), IMG / name)
@@ -254,6 +268,7 @@ def main() -> None:
     catalog_images = build_product_images()
     build_hero_slides(catalog_images)
     build_deal_image(catalog_images)
+    build_season_sale_images()
     build_banners(catalog_images)
     build_supporting_images(catalog_images)
     sync_product_names()

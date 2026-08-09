@@ -107,6 +107,34 @@ DEAL_OF_WEEK = {
     "name": "Festive Silk Saree",
 }
 
+# Dark moody images for season-sale blocks (black card + white text layout)
+SEASON_SALE = {
+    "collections-image_2.jpg": {
+        "url": u("1742038106824-ae078f37b633", "center"),
+        "name": "Evening Green Saree",
+        "size": (600, 760),
+        "anchor": "center",
+    },
+    "sale-image_1.jpg": {
+        "url": u("1756483492198-8ca91227489b", "center"),
+        "name": "Paithani Silk Saree",
+        "size": (1200, 760),
+        "anchor": "center",
+    },
+    "sale-image_2.jpg": {
+        "url": u("1774437792342-20a785ba0694", "center"),
+        "name": "Bridal Silk Saree",
+        "size": (1200, 760),
+        "anchor": "center",
+    },
+    "sale-image_3.jpg": {
+        "url": u("1524504388940-b1c1722653e1", "center"),
+        "name": "Classic Silk Saree",
+        "size": (1200, 760),
+        "anchor": "center",
+    },
+}
+
 BANNER_SOURCES = [
     u("1742677143629-b9784beab2e1", "top"),
     u("1771507056578-f9675a2a8f8a", "top"),
