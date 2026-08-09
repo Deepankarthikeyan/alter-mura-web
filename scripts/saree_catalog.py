@@ -1,85 +1,92 @@
-# Curated saree-only catalog. Every URL is a verified woman-in-saree photo from Unsplash.
+# Curated saree-only catalog — all images from https://unsplash.com
+UNSPLASH = "https://images.unsplash.com/photo-{id}?w=1600&q=85&auto=format&fit=crop"
+
+
+def u(photo_id: str, crop: str = "") -> str:
+    url = UNSPLASH.format(id=photo_id)
+    return f"{url}&crop={crop}" if crop else url
+
+
 SAREE_CATALOG = [
     {
         "id": 1,
         "name": "Kanjivaram Silk Saree",
-        "url": "https://images.unsplash.com/photo-1717835943315-b818e90cb2a1?w=1200&q=80&auto=format&fit=crop",
+        "url": u("1717835943315-b818e90cb2a1", "center"),
         "file": "product-item_1.jpg",
     },
     {
         "id": 2,
         "name": "Banarasi Silk Saree",
-        "url": "https://images.unsplash.com/photo-1742677143629-b9784beab2e1?w=1200&q=80&auto=format&fit=crop",
+        "url": u("1742677143629-b9784beab2e1", "top"),
         "file": "product-item_2.jpg",
     },
     {
         "id": 3,
         "name": "Cotton Handloom Saree",
-        "url": "https://images.unsplash.com/photo-1706685481823-b8f1a1c11fca?w=1200&q=80&auto=format&fit=crop",
+        "url": u("1706685481823-b8f1a1c11fca", "top"),
         "file": "product-item_3.jpg",
     },
     {
         "id": 4,
         "name": "Designer Party Saree",
-        "url": "https://images.unsplash.com/photo-1692992193981-d3d92fabd9cb?w=1200&q=80&auto=format&fit=crop",
+        "url": u("1692992193981-d3d92fabd9cb", "top"),
         "file": "product-item_4.jpg",
     },
     {
         "id": 5,
         "name": "Bridal Silk Saree",
-        "url": "https://images.unsplash.com/photo-1774437792342-20a785ba0694?w=1200&q=80&auto=format&fit=crop",
+        "url": u("1774437792342-20a785ba0694", "center"),
         "file": "product-item_5.jpg",
     },
     {
         "id": 6,
         "name": "Paithani Silk Saree",
-        "url": "https://images.unsplash.com/photo-1756483492198-8ca91227489b?w=1200&q=80&auto=format&fit=crop",
+        "url": u("1756483492198-8ca91227489b", "top"),
         "file": "product-item_6.jpg",
     },
     {
         "id": 7,
         "name": "Chanderi Cotton Saree",
-        "url": "https://images.unsplash.com/photo-1684961415565-80383f48c0c2?w=1200&q=80&auto=format&fit=crop",
+        "url": u("1684961415565-80383f48c0c2", "top"),
         "file": "product-item_7.jpg",
     },
     {
         "id": 8,
         "name": "Bandhani Festive Saree",
-        "url": "https://images.unsplash.com/photo-1678705730064-a7ecbab4b3fb?w=1200&q=80&auto=format&fit=crop",
+        "url": u("1678705730064-a7ecbab4b3fb", "center"),
         "file": "product-item_8.jpg",
     },
     {
         "id": 9,
         "name": "Mysore Silk Saree",
-        "url": "https://images.unsplash.com/photo-1698657169196-29b4783810c2?w=1200&q=80&auto=format&fit=crop&crop=center",
+        "url": u("1758985402638-6028bae83b98", "center"),
         "file": "product-item_9.jpg",
     },
     {
         "id": 10,
         "name": "Georgette Party Saree",
-        "url": "https://images.unsplash.com/photo-1771507056578-f9675a2a8f8a?w=1200&q=80&auto=format&fit=crop",
+        "url": u("1771507056578-f9675a2a8f8a", "top"),
         "file": "product-item_10.jpg",
     },
     {
         "id": 11,
         "name": "Tussar Silk Saree",
-        "url": "https://images.unsplash.com/photo-1749317776467-6dcf2bfbd26b?w=1200&q=80&auto=format&fit=crop",
+        "url": u("1749317776467-6dcf2bfbd26b", "center"),
         "file": "product-item_11.jpg",
     },
     {
         "id": 12,
         "name": "Patola Silk Saree",
-        "url": "https://images.unsplash.com/photo-1771654805161-442c6aab7b55?w=1200&q=80&auto=format&fit=crop",
+        "url": u("1769275061356-a038b498c4a7", "center"),
         "file": "product-item_12.jpg",
     },
 ]
 
-# Homepage hero slider: light sarees only, matched to slide copy
 HERO_SLIDES = [
     {
         "file": "first-screen-image.jpg",
-        "catalog_file": "product-item_2.jpg",
-        "name": "Banarasi Silk Saree",
+        "catalog_file": "product-item_10.jpg",
+        "name": "Georgette Party Saree",
     },
     {
         "file": "deal-of-the-week-inner.jpg",
@@ -88,24 +95,24 @@ HERO_SLIDES = [
     },
     {
         "file": "slider-banner.jpg",
-        "catalog_file": "product-item_4.jpg",
-        "name": "Designer Party Saree",
+        "catalog_file": "product-item_12.jpg",
+        "name": "Patola Silk Saree",
     },
 ]
 
 DEAL_OF_WEEK = {
     "file": "deal-of-the-week.jpg",
-    "catalog_file": "product-item_3.jpg",
-    "name": "Cotton Handloom Saree",
+    "catalog_file": "product-item_2.jpg",
+    "name": "Banarasi Silk Saree",
 }
 
-# Light saree banners for inner pages
 BANNER_SOURCES = [
-    "https://images.unsplash.com/photo-1742677143629-b9784beab2e1?w=1600&q=80&auto=format&fit=crop&crop=top",
-    "https://images.unsplash.com/photo-1684961415565-80383f48c0c2?w=1600&q=80&auto=format&fit=crop&crop=top",
-    "https://images.unsplash.com/photo-1692992193981-d3d92fabd9cb?w=1600&q=80&auto=format&fit=crop&crop=top",
-    "https://images.unsplash.com/photo-1678705730064-a7ecbab4b3fb?w=1600&q=80&auto=format&fit=crop&crop=top",
-    "https://images.unsplash.com/photo-1749317776467-6dcf2bfbd26b?w=1600&q=80&auto=format&fit=crop&crop=top",
+    u("1742677143629-b9784beab2e1", "top"),
+    u("1771507056578-f9675a2a8f8a", "top"),
+    u("1769275061356-a038b498c4a7", "center"),
+    u("1758985402638-6028bae83b98", "center"),
+    u("1692992193981-d3d92fabd9cb", "top"),
+    u("1749317776467-6dcf2bfbd26b", "center"),
 ]
 
 SAREE_NAMES = [item["name"] for item in SAREE_CATALOG]
