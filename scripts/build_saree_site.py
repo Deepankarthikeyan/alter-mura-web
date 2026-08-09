@@ -1,7 +1,7 @@
 import re
 import urllib.request
 from pathlib import Path
-from PIL import Image, ImageEnhance
+from PIL import Image, ImageEnhance, ImageDraw
 
 from saree_catalog import BANNER_SOURCES, HERO_SLIDES, SAREE_CATALOG
 
@@ -13,7 +13,8 @@ POOL = IMG / "_pool"
 PRODUCT_SIZE = (600, 800)
 PRODUCT_DETAIL_SIZE = (900, 1100)
 BANNER_SIZE = (1600, 620)
-HERO_SIZE = (900, 1100)
+HERO_SIZE = (1040, 800)
+HERO_BG = (236, 236, 236)
 COLLECTION_SIZE = (600, 760)
 POST_SIZE = (900, 600)
 
@@ -96,10 +97,30 @@ def build_product_images() -> dict[str, Image.Image]:
     return catalog_images
 
 
+def compose_hero_slide(source: Image.Image, fade_ratio: float = 0.58) -> Image.Image:
+    """Place saree on the right over a light grey studio-style background for readable hero text."""
+    w, h = HERO_SIZE
+    photo = brighten(source.convert("RGB"), 1.12)
+    photo = cover_crop(photo, HERO_SIZE, anchor="right")
+
+    canvas = Image.new("RGB", HERO_SIZE, HERO_BG)
+    canvas.paste(photo, (0, 0))
+
+    overlay = Image.new("RGBA", HERO_SIZE, (0, 0, 0, 0))
+    draw = ImageDraw.Draw(overlay)
+    fade_end = int(w * fade_ratio)
+    for x in range(fade_end):
+        t = 1 - (x / max(fade_end - 1, 1))
+        alpha = int(255 * (t**0.75))
+        draw.line([(x, 0), (x, h)], fill=(*HERO_BG, alpha))
+
+    return Image.alpha_composite(canvas.convert("RGBA"), overlay).convert("RGB")
+
+
 def build_hero_slides(catalog_images: dict[str, Image.Image]) -> None:
     for slide in HERO_SLIDES:
         source = Image.open(POOL / slide["catalog_file"]).convert("RGB")
-        hero = brighten(cover_crop(source, HERO_SIZE, anchor="right"), 1.08)
+        hero = compose_hero_slide(source)
         save_jpg(hero, IMG / slide["file"])
         print(f"hero {slide['file']} -> {slide['name']}")
 
