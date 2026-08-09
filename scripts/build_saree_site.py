@@ -106,11 +106,16 @@ def build_hero_slides(catalog_images: dict[str, Image.Image]) -> None:
 
 
 def build_deal_image(catalog_images: dict[str, Image.Image]) -> None:
-    source = catalog_images[DEAL_OF_WEEK["catalog_file"]]
-    pool = Image.open(POOL / DEAL_OF_WEEK["catalog_file"]).convert("RGB")
-    im = brighten(cover_crop(pool, DEAL_SIZE, anchor="right"), 1.18)
-    save_jpg(im, IMG / DEAL_OF_WEEK["file"])
-    print(f"deal {DEAL_OF_WEEK['file']} -> {DEAL_OF_WEEK['name']}")
+    meta = DEAL_OF_WEEK
+    if meta.get("url"):
+        pool = POOL / f"deal_{meta['file']}"
+        source = download(meta["url"], pool)
+    else:
+        source = Image.open(POOL / meta["catalog_file"]).convert("RGB")
+    # Keep the light sky/background on the left for deal text; saree on the right
+    im = brighten(cover_crop(source, DEAL_SIZE, anchor="left"), 1.06)
+    save_jpg(im, IMG / meta["file"])
+    print(f"deal {meta['file']} -> {meta['name']}")
 
 
 def build_banners(catalog_images: dict[str, Image.Image]) -> None:

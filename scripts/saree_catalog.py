@@ -102,8 +102,9 @@ HERO_SLIDES = [
 
 DEAL_OF_WEEK = {
     "file": "deal-of-the-week.jpg",
-    "catalog_file": "product-item_2.jpg",
-    "name": "Banarasi Silk Saree",
+    # Outdoor smile + light sky — matches Mollee deal layout for readable left-side text
+    "url": u("1761125135252-e7eb993e0145", "top"),
+    "name": "Festive Silk Saree",
 }
 
 BANNER_SOURCES = [

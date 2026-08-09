@@ -35,6 +35,16 @@
     object-position: center top;
 }
 
+/* Subtle readability on banner/deal text without white boxes */
+.main-slider__subtitle,
+.main-slider__title,
+.deal-block__subtitle,
+.deal-block__title,
+.deal-block .syotimer-cell__value,
+.deal-block .syotimer-cell__unit {
+    text-shadow: 0 1px 8px rgba(255, 255, 255, 0.85);
+}
+
 @media screen and (max-width: 760px) {
     .logo__image {
         height: 38px;
