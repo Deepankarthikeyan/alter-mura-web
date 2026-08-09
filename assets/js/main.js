@@ -669,14 +669,14 @@ window.onload = function () {
 			setTimeout(function () {
 				noUiSlider.create(rangeSlider, {				
 					range: {
-						min: 1,
-						max: 300,
+						min: 500,
+						max: 25000,
 					},
-					step: 1,
-					start: [21, 187],
+					step: 100,
+					start: [2000, 15000],
 					format: wNumb({
 						decimals: 0,
-						prefix: "$",
+						prefix: "₹",
 					}),
 					tooltips: true,
 					connect: true
