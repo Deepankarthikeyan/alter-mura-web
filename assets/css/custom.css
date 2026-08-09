@@ -35,6 +35,33 @@
     object-position: center top;
 }
 
+/* Light panel behind hero slider text only */
+.main-slider__text-panel {
+    position: relative;
+    display: inline-block;
+    padding: 24px 32px 28px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+}
+
+.main-slider__text-panel .main-slider__title {
+    padding-bottom: 24px;
+}
+
+@media screen and (max-width: 1279px) {
+    .main-slider__text-panel {
+        padding: 18px 22px 22px;
+        background: rgba(255, 255, 255, 0.92);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .main-slider__text-panel {
+        padding: 14px 16px 18px;
+        background: rgba(245, 245, 245, 0.94);
+    }
+}
+
 @media screen and (max-width: 760px) {
     .logo__image {
         height: 38px;
