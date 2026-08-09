@@ -22,6 +22,50 @@
     padding-top: 20px;
 }
 
+/* Keep header items vertically aligned */
+.header__main > .header__cols,
+.header__left > .header__cols {
+    align-items: center;
+}
+
+/* Scrolled sticky header: center logo vertically in the bar */
+.header.scrolled .header__main {
+    height: 62px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    box-sizing: border-box;
+}
+
+.header.scrolled .header__main > .header__cols {
+    width: 100%;
+    align-items: center;
+}
+
+.header.scrolled .header__left,
+.header.scrolled .header__right,
+.header.scrolled .header__col {
+    display: flex;
+    align-items: center;
+}
+
+.header.scrolled .header-nav__link {
+    top: 0;
+}
+
+.header.scrolled .logo {
+    height: 62px;
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.header.scrolled .logo__image {
+    height: 38px;
+    display: block;
+}
+
 .footer-nav__text {
     color: inherit;
     font-size: inherit;
