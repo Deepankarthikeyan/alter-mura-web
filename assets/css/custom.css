@@ -20,6 +20,24 @@
 
 .header__main {
     padding-top: 20px;
+    position: relative;
+}
+
+/* Center logo in header bar */
+.header__main .logo {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: fit-content;
+    height: fit-content;
+    z-index: 3;
+}
+
+.header__left > .header__cols > .header__col:nth-child(2) {
+    width: 0;
+    min-width: 0;
+    padding: 0;
+    overflow: visible;
 }
 
 .footer-nav__text {
