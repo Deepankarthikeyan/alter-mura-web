@@ -1,11 +1,17 @@
 /* MuRa@23 minimal overrides — keep Mollee design intact */
 
-/* Prevent PNG logo from stretching in Mollee's fixed logo slot */
+/* Prevent MuRa PNG logo from stretching in Mollee's 82x17 header slot */
+.header .logo {
+    height: auto;
+    display: block;
+}
+
 .header .logo__image {
-    width: auto;
-    height: 17px;
-    max-width: 120px;
+    width: auto !important;
+    height: 44px !important;
+    max-width: none;
     object-fit: contain;
+    object-position: left center;
 }
 
 .footer-logo .logo__image {
@@ -38,6 +44,10 @@
 }
 
 @media screen and (max-width: 760px) {
+    .header .logo__image {
+        height: 36px !important;
+    }
+
     .footer-logo .logo__image {
         height: 48px;
     }
