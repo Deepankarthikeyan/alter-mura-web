@@ -17,6 +17,47 @@
     height: 56px;
 }
 
+/* Center nav links in header (logo left, icons right) */
+.header__main > .header__cols {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__left {
+    flex: 0 0 auto;
+}
+
+.header__center {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header__right {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.header-nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.header-nav__list {
+    justify-content: center;
+}
+
+.header.scrolled .header__main {
+    display: flex;
+    align-items: center;
+}
+
 .footer-nav__text {
     color: inherit;
     font-size: inherit;

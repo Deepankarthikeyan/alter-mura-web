@@ -19,81 +19,28 @@ HEADER_MOBILE = """        <!-- BEGIN HEADER -->
                                     <img class="logo__image" src="assets/img/logo.png" alt="MuRa@23">
                                 </a>
                             </div>
-                            <div class="header__col header__col_hide-mob">
-                                <nav class="header-nav">
-                                    <ul class="header-nav__list">
-                                        <li class="header-nav__item">
-                                            <a class="header-nav__link" href="index.html">Home</a>
-                                        </li>
-                                        <li class="header-nav__item js-nav-item">
-                                            <a class="header-nav__link header-nav__link_arrow js-nav-button" href="about.html">Pages</a>
-                                            <div class="hide-nav js-nav-hide">
-                                                <ul class="hide-nav__list">
-                                                    <li class="hide-nav__item">
-                                                        <a class="hide-nav__link" href="login.html">Login</a>
-                                                    </li>
-                                                    <li class="hide-nav__item">
-                                                        <a class="hide-nav__link" href="registration.html">Registration</a>
-                                                    </li>
-                                                    <li class="hide-nav__item">
-                                                        <a class="hide-nav__link" href="about.html">About us</a>
-                                                    </li>
-                                                    <li class="hide-nav__item">
-                                                        <a class="hide-nav__link" href="collections.html">Collections</a>
-                                                    </li>
-                                                    <li class="hide-nav__item">
-                                                        <a class="hide-nav__link" href="faq.html">FAQ</a>
-                                                    </li>
-                                                    <li class="hide-nav__item">
-                                                        <a class="hide-nav__link" href="post.html">Post</a>
-                                                    </li>
-                                                    <li class="hide-nav__item">
-                                                        <a class="hide-nav__link" href="404.html">404</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="header-nav__item js-nav-item">
-                                            <a class="header-nav__link header-nav__link_arrow js-nav-button" href="shop.html">Shop</a>
-                                            <div class="hide-nav js-nav-hide">
-                                                <ul class="hide-nav__list">
-                                                    <li class="hide-nav__item">
-                                                        <a class="hide-nav__link" href="my_profile.html">Profile</a>
-                                                    </li>
-                                                    <li class="hide-nav__item">
-                                                        <a class="hide-nav__link" href="shop.html">Catalog</a>
-                                                    </li>
-                                                    <li class="hide-nav__item">
-                                                        <a class="hide-nav__link" href="product_page.html">Product page</a>
-                                                    </li>
-                                                    <li class="hide-nav__item">
-                                                        <a class="hide-nav__link" href="cart.html">Cart</a>
-                                                    </li>
-                                                    <li class="hide-nav__item">
-                                                        <a class="hide-nav__link" href="checkout-1.html">Checkout 1</a>
-                                                    </li>
-                                                    <li class="hide-nav__item">
-                                                        <a class="hide-nav__link" href="checkout-2.html">Checkout 2</a>
-                                                    </li>
-                                                    <li class="hide-nav__item">
-                                                        <a class="hide-nav__link" href="checkout-3.html">Checkout 3</a>
-                                                    </li>
-                                                    <li class="hide-nav__item">
-                                                        <a class="hide-nav__link" href="wishlist.html">Wishlist</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="header-nav__item">
-                                            <a class="header-nav__link" href="blog.html">Blog</a>
-                                        </li>
-                                        <li class="header-nav__item">
-                                            <a class="header-nav__link" href="contacts.html">Contact</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
                         </div>
+                    </div>
+                    <div class="header__center header__col_hide-mob">
+                        <nav class="header-nav">
+                            <ul class="header-nav__list">
+                                <li class="header-nav__item">
+                                    <a class="header-nav__link" href="index.html">Home</a>
+                                </li>
+                                <li class="header-nav__item">
+                                    <a class="header-nav__link" href="about.html">About us</a>
+                                </li>
+                                <li class="header-nav__item">
+                                    <a class="header-nav__link" href="shop.html">Shop</a>
+                                </li>
+                                <li class="header-nav__item">
+                                    <a class="header-nav__link" href="blog.html">Blog</a>
+                                </li>
+                                <li class="header-nav__item">
+                                    <a class="header-nav__link" href="contacts.html">Contact</a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                     <div class="header__right">
                         <ul class="user-nav">
@@ -135,68 +82,11 @@ HEADER_MOBILE = """        <!-- BEGIN HEADER -->
                     <li class="mob-nav__item">
                         <a class="mob-nav__link" href="index.html">Home</a>
                     </li>
-                    <li class="mob-nav__item js-slidedown">
-                        <a class="mob-nav__link js-slidedown-button" href="about.html">
-                            <span class="mob-nav__arrow">Pages</span>
-                        </a>
-                        <div class="slide-nav js-slidedown-hide">
-                            <ul class="slide-nav__list">
-                                <li class="slide-nav__item">
-                                    <a class="slide-nav__link" href="login.html">Login</a>
-                                </li>
-                                <li class="slide-nav__item">
-                                    <a class="slide-nav__link" href="registration.html">Registration</a>
-                                </li>
-                                <li class="slide-nav__item">
-                                    <a class="slide-nav__link" href="about.html">About us</a>
-                                </li>
-                                <li class="slide-nav__item">
-                                    <a class="slide-nav__link" href="collections.html">Collections</a>
-                                </li>
-                                <li class="slide-nav__item">
-                                    <a class="slide-nav__link" href="faq.html">FAQ</a>
-                                </li>
-                                <li class="slide-nav__item">
-                                    <a class="slide-nav__link" href="post.html">Post</a>
-                                </li>
-                                <li class="slide-nav__item">
-                                    <a class="slide-nav__link" href="404.html">404</a>
-                                </li>
-                            </ul>
-                        </div>
+                    <li class="mob-nav__item">
+                        <a class="mob-nav__link" href="about.html">About us</a>
                     </li>
-                    <li class="mob-nav__item js-slidedown">
-                        <a class="mob-nav__link js-slidedown-button" href="{hash}">
-                            <span class="mob-nav__arrow">Shop</span>
-                        </a>
-                        <div class="slide-nav js-slidedown-hide">
-                            <ul class="slide-nav__list">
-                                <li class="slide-nav__item">
-                                    <a class="slide-nav__link" href="my_profile.html">Profile</a>
-                                </li>
-                                <li class="slide-nav__item">
-                                    <a class="slide-nav__link" href="shop.html">Catalog</a>
-                                </li>
-                                <li class="slide-nav__item">
-                                    <a class="slide-nav__link" href="product_page.html">Product page</a>
-                                </li>
-                                <li class="slide-nav__item">
-                                    <a class="slide-nav__link" href="cart.html">Cart</a>
-                                </li>
-                                <li class="slide-nav__item">
-                                    <a class="slide-nav__link" href="checkout-1.html">Checkout 1</a>
-                                </li>
-                                <li class="slide-nav__item">
-                                    <a class="slide-nav__link" href="checkout-2.html">Checkout 2</a>
-                                </li>
-                                <li class="slide-nav__item">
-                                    <a class="slide-nav__link" href="checkout-3.html">Checkout 3</a>
-                                </li>
-                                <li class="slide-nav__item">
-                                    <a class="slide-nav__link" href="wishlist.html">Wishlist</a>
-                                </li>
-                            </ul>
-                        </div>
+                    <li class="mob-nav__item">
+                        <a class="mob-nav__link" href="shop.html">Shop</a>
                     </li>
                     <li class="mob-nav__item">
                         <a class="mob-nav__link" href="blog.html">Blog</a>
@@ -242,13 +132,13 @@ def restore_file(path: Path) -> None:
         print(f"skip {path.name}: block not found")
         return
     path.write_text(new_text)
-    print(f"restored {path.name}")
+    print(f"updated {path.name}")
 
 
 def main() -> None:
     for path in sorted(ROOT.glob("*.html")):
         restore_file(path)
-    print("Done: Mollee header restored on all pages.")
+    print("Done: centered header nav applied.")
 
 
 if __name__ == "__main__":
