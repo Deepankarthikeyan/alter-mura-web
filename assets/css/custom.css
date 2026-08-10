@@ -1,5 +1,13 @@
 /* MuRa@23 minimal overrides — keep Mollee design intact */
 
+/* Prevent PNG logo from stretching in Mollee's fixed logo slot */
+.header .logo__image {
+    width: auto;
+    height: 17px;
+    max-width: 120px;
+    object-fit: contain;
+}
+
 .footer-logo .logo__image {
     height: 56px;
     width: auto;
