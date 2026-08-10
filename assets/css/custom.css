@@ -1,20 +1,52 @@
 /* MuRa@23 minimal overrides — keep Mollee design intact */
 
-/* Larger clear header logo without stretching or breaking Mollee layout */
+/* Professional header alignment — logo, menu, nav, icons centered in one row */
+.header .header__main {
+    display: flex;
+    align-items: center;
+}
+
+.header .header__cols,
+.header .header__left,
+.header .header__right,
 .header .header__left > .header__cols {
+    display: flex;
+    align-items: center;
+}
+
+.header .header__col {
+    display: flex;
     align-items: center;
 }
 
 .header .logo {
     height: auto;
-    display: block;
+    padding: 0;
+    display: flex;
+    align-items: center;
 }
 
 .header .logo__image {
     width: auto !important;
     height: 40px !important;
+    display: block;
     object-fit: contain;
     object-position: left center;
+}
+
+.header .mob-button {
+    margin: 0;
+    align-self: center;
+}
+
+.header .header-nav__list,
+.header .user-nav {
+    align-items: center;
+}
+
+.header .header-nav__link,
+.header .user-nav__link {
+    top: 0;
 }
 
 .footer-logo .logo__image {
@@ -47,6 +79,16 @@
 }
 
 @media screen and (max-width: 760px) {
+    .header .header__main,
+    .header.scrolled .header__main {
+        display: flex;
+        align-items: center;
+        height: auto;
+        min-height: 62px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
     .header .logo__image {
         height: 32px !important;
     }
