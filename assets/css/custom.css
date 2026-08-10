@@ -12,17 +12,19 @@
 .header .header__left > .header__cols {
     display: flex;
     align-items: center;
+    flex-wrap: nowrap;
 }
 
 .header .header__col {
     display: flex;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .header .logo {
     height: auto;
     padding: 0;
-    margin-bottom: 30px;
+    margin: 0;
     display: flex;
     align-items: center;
 }
@@ -31,13 +33,14 @@
     width: auto !important;
     height: 40px !important;
     display: block;
+    margin: 0;
     object-fit: contain;
-    object-position: left center;
+    object-position: center;
 }
 
 .header .mob-button {
     margin: 0;
-    align-self: center;
+    flex-shrink: 0;
 }
 
 .header .header-nav__list,
