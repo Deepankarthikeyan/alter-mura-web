@@ -1,8 +1,10 @@
 /* MuRa@23 minimal overrides — keep Mollee design intact */
 .logo {
     height: 22px;
-    padding: 2px 0 0;
-    display: block;
+    padding: 0;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
 }
 
 .logo__image {
@@ -25,13 +27,34 @@
 }
 
 .header__main > .header__cols,
-.header__left > .header__cols,
+.header__left > .header__cols {
+    align-items: center;
+}
+
 .header__left,
-.header__right,
-.header__col,
-.header-nav,
+.header__right {
+    display: flex;
+    align-items: center;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
 .header-nav__list,
-.user-nav,
+.user-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4px;
+}
+
+.header-nav__item,
 .user-nav__item {
     display: flex;
     align-items: center;
@@ -39,9 +62,13 @@
 
 .header-nav__link,
 .user-nav__link {
+    margin-top: 4px !important;
     top: 0 !important;
+    position: relative;
     display: flex;
     align-items: center;
+    justify-content: center;
+    line-height: 22px;
 }
 
 .user-nav__icon_1,
@@ -55,13 +82,20 @@
     height: 62px !important;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
+    display: flex !important;
     align-items: center !important;
+}
+
+.header.scrolled .header-nav,
+.header.scrolled .user-nav,
+.header.scrolled .header-nav__link,
+.header.scrolled .user-nav__link {
+    margin-top: 0 !important;
 }
 
 .header.scrolled .header__main > .header__cols,
 .header.scrolled .header__left,
 .header.scrolled .header__right,
-.header.scrolled .header__col,
 .header.scrolled .header-nav,
 .header.scrolled .user-nav,
 .header.scrolled .logo {
@@ -71,6 +105,7 @@
 .header.scrolled .logo {
     height: auto;
     padding: 0;
+    margin-top: 0;
     display: flex;
 }
 
