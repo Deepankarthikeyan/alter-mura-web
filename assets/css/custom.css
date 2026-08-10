@@ -17,45 +17,61 @@
     height: 56px;
 }
 
-/* Center nav links in header (logo left, icons right) */
-.header__main > .header__cols {
+/* Vertical center (top-bottom) — keep Mollee left/right layout */
+.header__main {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    box-sizing: border-box;
 }
 
-.header__left {
-    flex: 0 0 auto;
-}
-
-.header__center {
-    flex: 1 1 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.header__right {
-    flex: 0 0 auto;
+.header__main > .header__cols,
+.header__left > .header__cols,
+.header__left,
+.header__right,
+.header__col,
+.header-nav,
+.header-nav__list,
+.user-nav,
+.user-nav__item {
     display: flex;
     align-items: center;
 }
 
-.header-nav {
-    width: 100%;
+.header-nav__link,
+.user-nav__link {
+    top: 0 !important;
     display: flex;
-    justify-content: center;
-    padding-left: 0;
-    padding-right: 0;
+    align-items: center;
 }
 
-.header-nav__list {
-    justify-content: center;
+.user-nav__icon_1,
+.user-nav__icon_2,
+.user-nav__icon_3,
+.user-nav__icon_4 {
+    margin: 0 !important;
 }
 
 .header.scrolled .header__main {
-    display: flex;
+    height: 62px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    align-items: center !important;
+}
+
+.header.scrolled .header__main > .header__cols,
+.header.scrolled .header__left,
+.header.scrolled .header__right,
+.header.scrolled .header__col,
+.header.scrolled .header-nav,
+.header.scrolled .user-nav,
+.header.scrolled .logo {
     align-items: center;
+}
+
+.header.scrolled .logo {
+    height: auto;
+    padding: 0;
+    display: flex;
 }
 
 .footer-nav__text {

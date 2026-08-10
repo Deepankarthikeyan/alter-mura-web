@@ -19,28 +19,28 @@ HEADER_MOBILE = """        <!-- BEGIN HEADER -->
                                     <img class="logo__image" src="assets/img/logo.png" alt="MuRa@23">
                                 </a>
                             </div>
+                            <div class="header__col header__col_hide-mob">
+                                <nav class="header-nav">
+                                    <ul class="header-nav__list">
+                                        <li class="header-nav__item">
+                                            <a class="header-nav__link" href="index.html">Home</a>
+                                        </li>
+                                        <li class="header-nav__item">
+                                            <a class="header-nav__link" href="about.html">About us</a>
+                                        </li>
+                                        <li class="header-nav__item">
+                                            <a class="header-nav__link" href="shop.html">Shop</a>
+                                        </li>
+                                        <li class="header-nav__item">
+                                            <a class="header-nav__link" href="blog.html">Blog</a>
+                                        </li>
+                                        <li class="header-nav__item">
+                                            <a class="header-nav__link" href="contacts.html">Contact</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
                         </div>
-                    </div>
-                    <div class="header__center header__col_hide-mob">
-                        <nav class="header-nav">
-                            <ul class="header-nav__list">
-                                <li class="header-nav__item">
-                                    <a class="header-nav__link" href="index.html">Home</a>
-                                </li>
-                                <li class="header-nav__item">
-                                    <a class="header-nav__link" href="about.html">About us</a>
-                                </li>
-                                <li class="header-nav__item">
-                                    <a class="header-nav__link" href="shop.html">Shop</a>
-                                </li>
-                                <li class="header-nav__item">
-                                    <a class="header-nav__link" href="blog.html">Blog</a>
-                                </li>
-                                <li class="header-nav__item">
-                                    <a class="header-nav__link" href="contacts.html">Contact</a>
-                                </li>
-                            </ul>
-                        </nav>
                     </div>
                     <div class="header__right">
                         <ul class="user-nav">
@@ -138,7 +138,7 @@ def restore_file(path: Path) -> None:
 def main() -> None:
     for path in sorted(ROOT.glob("*.html")):
         restore_file(path)
-    print("Done: centered header nav applied.")
+    print("Done: header layout restored.")
 
 
 if __name__ == "__main__":
