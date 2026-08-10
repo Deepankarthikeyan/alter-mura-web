@@ -1,7 +1,14 @@
 /* MuRa@23 minimal overrides — keep Mollee design intact */
+.header .header__cols,
+.header .header__left > .header__cols {
+    align-items: center;
+}
+
 .header .logo {
     height: auto;
-    padding: 2px 0 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
 }
 
 .header .logo__image {
