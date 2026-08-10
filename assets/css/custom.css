@@ -1,12 +1,12 @@
 /* MuRa@23 minimal overrides — keep Mollee design intact */
-.logo {
+.header .logo {
     height: auto;
     padding: 2px 0 0;
 }
 
-.logo__image {
+.header .logo__image {
     width: auto;
-    height: 26px;
+    height: 34px;
     margin: 0;
     object-fit: contain;
     background: transparent;
@@ -40,8 +40,8 @@
 }
 
 @media screen and (max-width: 760px) {
-    .logo__image {
-        height: 22px;
+    .header .logo__image {
+        height: 28px;
     }
 
     .footer-logo .logo__image {
