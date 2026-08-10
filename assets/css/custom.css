@@ -1,16 +1,9 @@
 /* MuRa@23 minimal overrides — keep Mollee design intact */
 
-/* Prevent MuRa PNG logo from stretching in Mollee's 82x17 header slot */
-.header .logo {
-    height: auto;
-    display: block;
-    margin-bottom: 60px;
-}
-
+/* Keep MuRa logo proportional inside Mollee header slot (82x17) */
 .header .logo__image {
     width: auto !important;
-    height: 44px !important;
-    max-width: none;
+    height: 17px !important;
     object-fit: contain;
     object-position: left center;
 }
@@ -45,10 +38,6 @@
 }
 
 @media screen and (max-width: 760px) {
-    .header .logo__image {
-        height: 36px !important;
-    }
-
     .footer-logo .logo__image {
         height: 48px;
     }
