@@ -4,6 +4,7 @@
 .header .logo {
     height: auto;
     display: block;
+    margin-bottom: 1.25rem;
 }
 
 .header .logo__image {
