@@ -1,46 +1,5 @@
 /* MuRa@23 minimal overrides — keep Mollee design intact */
 
-/* Vertically center header logo, mob menu, nav, and icons */
-.header .header__main {
-    display: flex;
-    align-items: center;
-    padding-bottom: 20px;
-}
-
-.header .header__cols,
-.header .header__left,
-.header .header__right,
-.header .header__left > .header__cols {
-    display: flex;
-    align-items: center;
-}
-
-.header .header__col {
-    display: flex;
-    align-items: center;
-}
-
-.header .logo {
-    height: auto;
-    padding: 0;
-    margin-bottom: 30px;
-    display: flex;
-    align-items: center;
-}
-
-.header .mob-button {
-    align-self: center;
-}
-
-.header .logo__image {
-    width: auto;
-    height: 50px;
-    margin: 0;
-    display: block;
-    object-fit: contain;
-    background: transparent;
-}
-
 .footer-logo .logo__image {
     height: 56px;
     width: auto;
@@ -70,25 +29,7 @@
     text-shadow: 0 1px 8px rgba(255, 255, 255, 0.85);
 }
 
-@media screen and (max-width: 1279px) {
-    .header .header__main {
-        padding-bottom: 18px;
-    }
-}
-
 @media screen and (max-width: 760px) {
-    .header .header__main,
-    .header.scrolled .header__main {
-        height: auto;
-        min-height: 62px;
-        padding-top: 14px;
-        padding-bottom: 14px;
-    }
-
-    .header .logo__image {
-        height: 36px;
-    }
-
     .footer-logo .logo__image {
         height: 48px;
     }
