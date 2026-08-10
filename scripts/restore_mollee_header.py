@@ -2,118 +2,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-
-HEADER_MOBILE = """        <!-- BEGIN HEADER -->
-        <header class="header">
-            <div class="header__main">
-                <div class="header__cols">
-                    <div class="header__left">
-                        <div class="header__cols">
-                            <div class="header__col">
-                                <button class="mob-button js-mob-open">
-                                    <span class="mob-button__icon"></span>
-                                </button>
-                            </div>
-                            <div class="header__col">
-                                <a class="logo" href="index.html">
-                                    <img class="logo__image" src="assets/img/logo.png" alt="MuRa@23">
-                                </a>
-                            </div>
-                            <div class="header__col header__col_hide-mob">
-                                <nav class="header-nav">
-                                    <ul class="header-nav__list">
-                                        <li class="header-nav__item">
-                                            <a class="header-nav__link" href="index.html">Home</a>
-                                        </li>
-                                        <li class="header-nav__item">
-                                            <a class="header-nav__link" href="about.html">About us</a>
-                                        </li>
-                                        <li class="header-nav__item">
-                                            <a class="header-nav__link" href="shop.html">Shop</a>
-                                        </li>
-                                        <li class="header-nav__item">
-                                            <a class="header-nav__link" href="blog.html">Blog</a>
-                                        </li>
-                                        <li class="header-nav__item">
-                                            <a class="header-nav__link" href="contacts.html">Contact</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="header__right">
-                        <ul class="user-nav">
-                            <li class="user-nav__item">
-                                <a class="user-nav__link" href="{hash}">
-                                    <span class="user-nav__icon user-nav__icon_1"></span>
-                                </a>
-                            </li>
-                            <li class="user-nav__item">
-                                <a class="user-nav__link" href="{hash}">
-                                    <span class="user-nav__icon user-nav__icon_2"></span>
-                                </a>
-                            </li>
-                            <li class="user-nav__item">
-                                <a class="user-nav__link" href="{hash}">
-                                    <span class="user-nav__icon user-nav__icon_3"></span>
-                                    <span class="user-nav__text">0</span>
-                                </a>
-                            </li>
-                            <li class="user-nav__item">
-                                <a class="user-nav__link" href="{hash}">
-                                    <span class="user-nav__icon user-nav__icon_4"></span>
-                                    <span class="user-nav__text">0</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- HEADER END -->
-
-        <!-- MOBILE NAVIGATION -->
-        <div class="hide-mob js-mob-hide">
-            <div class="hide-mob__bg">
-                <button class="hide-mob__close close-button js-mob-close"></button>
-                <div class="hide-mob__mask js-mob-close"></div>
-                <ul class="mob-nav">
-                    <li class="mob-nav__item">
-                        <a class="mob-nav__link" href="index.html">Home</a>
-                    </li>
-                    <li class="mob-nav__item">
-                        <a class="mob-nav__link" href="about.html">About us</a>
-                    </li>
-                    <li class="mob-nav__item">
-                        <a class="mob-nav__link" href="shop.html">Shop</a>
-                    </li>
-                    <li class="mob-nav__item">
-                        <a class="mob-nav__link" href="blog.html">Blog</a>
-                    </li>
-                    <li class="mob-nav__item">
-                        <a class="mob-nav__link" href="contacts.html">Contact</a>
-                    </li>
-                </ul>
-                <div class="hide-mob__socials">
-                    <ul class="socials__list socials__list_center">
-                        <li class="socials__item">
-                            <a class="socials__link" href="{hash}">Fb</a>
-                        </li>
-                        <li class="socials__item">
-                            <a class="socials__link" href="{hash}">Tw</a>
-                        </li>
-                        <li class="socials__item">
-                            <a class="socials__link" href="{hash}">Ins</a>
-                        </li>
-                        <li class="socials__item">
-                            <a class="socials__link" href="{hash}">Pt</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- MOBILE NAVIGATION END -->"""
+TEMPLATE = (ROOT / "scripts" / "mollee_header_block.html").read_text()
 
 BLOCK_RE = re.compile(
     r"<!-- BEGIN HEADER -->.*?<!-- MOBILE NAVIGATION END -->",
@@ -126,19 +15,19 @@ def restore_file(path: Path) -> None:
     if "<header class=\"header\">" not in text:
         return
     page_hash = f"{path.name}#"
-    block = HEADER_MOBILE.format(hash=page_hash)
+    block = TEMPLATE.replace("{hash}", page_hash)
     new_text, count = BLOCK_RE.subn(block, text, count=1)
     if count != 1:
         print(f"skip {path.name}: block not found")
         return
     path.write_text(new_text)
-    print(f"updated {path.name}")
+    print(f"restored {path.name}")
 
 
 def main() -> None:
     for path in sorted(ROOT.glob("*.html")):
         restore_file(path)
-    print("Done: header layout restored.")
+    print("Done: Mollee header structure restored.")
 
 
 if __name__ == "__main__":
