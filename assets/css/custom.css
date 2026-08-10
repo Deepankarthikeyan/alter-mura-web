@@ -22,6 +22,7 @@
 .header .logo {
     height: auto;
     padding: 0;
+    margin-bottom: 50px;
     display: flex;
     align-items: center;
 }
