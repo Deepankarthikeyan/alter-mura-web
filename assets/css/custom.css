@@ -1,9 +1,18 @@
 /* MuRa@23 minimal overrides — keep Mollee design intact */
 
-/* Keep MuRa logo proportional inside Mollee header slot (82x17) */
+/* Larger clear header logo without stretching or breaking Mollee layout */
+.header .header__left > .header__cols {
+    align-items: center;
+}
+
+.header .logo {
+    height: auto;
+    display: block;
+}
+
 .header .logo__image {
     width: auto !important;
-    height: 17px !important;
+    height: 40px !important;
     object-fit: contain;
     object-position: left center;
 }
@@ -38,6 +47,10 @@
 }
 
 @media screen and (max-width: 760px) {
+    .header .logo__image {
+        height: 32px !important;
+    }
+
     .footer-logo .logo__image {
         height: 48px;
     }
