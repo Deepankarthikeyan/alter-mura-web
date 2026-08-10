@@ -25,7 +25,7 @@
 
     <div class="page-container">
 
-        <!-- BEGIN HEADER -->
+                <!-- BEGIN HEADER -->
         <header class="header">
             <div class="header__main">
                 <div class="header__cols">
@@ -42,16 +42,69 @@
                                 </a>
                             </div>
                             <div class="header__col header__col_hide-mob">
-                                                                <nav class="header-nav">
+                                <nav class="header-nav">
                                     <ul class="header-nav__list">
                                         <li class="header-nav__item">
                                             <a class="header-nav__link" href="index.html">Home</a>
                                         </li>
-                                        <li class="header-nav__item">
-                                            <a class="header-nav__link" href="about.html">About us</a>
+                                        <li class="header-nav__item js-nav-item">
+                                            <a class="header-nav__link header-nav__link_arrow js-nav-button" href="about.html">Pages</a>
+                                            <div class="hide-nav js-nav-hide">
+                                                <ul class="hide-nav__list">
+                                                    <li class="hide-nav__item">
+                                                        <a class="hide-nav__link" href="login.html">Login</a>
+                                                    </li>
+                                                    <li class="hide-nav__item">
+                                                        <a class="hide-nav__link" href="registration.html">Registration</a>
+                                                    </li>
+                                                    <li class="hide-nav__item">
+                                                        <a class="hide-nav__link" href="about.html">About us</a>
+                                                    </li>
+                                                    <li class="hide-nav__item">
+                                                        <a class="hide-nav__link" href="collections.html">Collections</a>
+                                                    </li>
+                                                    <li class="hide-nav__item">
+                                                        <a class="hide-nav__link" href="faq.html">FAQ</a>
+                                                    </li>
+                                                    <li class="hide-nav__item">
+                                                        <a class="hide-nav__link" href="post.html">Post</a>
+                                                    </li>
+                                                    <li class="hide-nav__item">
+                                                        <a class="hide-nav__link" href="404.html">404</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </li>
-                                        <li class="header-nav__item">
-                                            <a class="header-nav__link" href="shop.html">Shop</a>
+                                        <li class="header-nav__item js-nav-item">
+                                            <a class="header-nav__link header-nav__link_arrow js-nav-button" href="shop.html">Shop</a>
+                                            <div class="hide-nav js-nav-hide">
+                                                <ul class="hide-nav__list">
+                                                    <li class="hide-nav__item">
+                                                        <a class="hide-nav__link" href="my_profile.html">Profile</a>
+                                                    </li>
+                                                    <li class="hide-nav__item">
+                                                        <a class="hide-nav__link" href="shop.html">Catalog</a>
+                                                    </li>
+                                                    <li class="hide-nav__item">
+                                                        <a class="hide-nav__link" href="product_page.html">Product page</a>
+                                                    </li>
+                                                    <li class="hide-nav__item">
+                                                        <a class="hide-nav__link" href="cart.html">Cart</a>
+                                                    </li>
+                                                    <li class="hide-nav__item">
+                                                        <a class="hide-nav__link" href="checkout-1.html">Checkout 1</a>
+                                                    </li>
+                                                    <li class="hide-nav__item">
+                                                        <a class="hide-nav__link" href="checkout-2.html">Checkout 2</a>
+                                                    </li>
+                                                    <li class="hide-nav__item">
+                                                        <a class="hide-nav__link" href="checkout-3.html">Checkout 3</a>
+                                                    </li>
+                                                    <li class="hide-nav__item">
+                                                        <a class="hide-nav__link" href="wishlist.html">Wishlist</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </li>
                                         <li class="header-nav__item">
                                             <a class="header-nav__link" href="blog.html">Blog</a>
@@ -61,7 +114,7 @@
                                         </li>
                                     </ul>
                                 </nav>
-                            </div>                                                
+                            </div>
                         </div>
                     </div>
                     <div class="header__right">
@@ -87,28 +140,85 @@
                                     <span class="user-nav__icon user-nav__icon_4"></span>
                                     <span class="user-nav__text">0</span>
                                 </a>
-                            </li>                                                                                    
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </header>
-        <!-- HEADER END --> 
-        
+        <!-- HEADER END -->
+
         <!-- MOBILE NAVIGATION -->
         <div class="hide-mob js-mob-hide">
             <div class="hide-mob__bg">
-                <button class="hide-mob__close close-button js-mob-close"></button>  
+                <button class="hide-mob__close close-button js-mob-close"></button>
                 <div class="hide-mob__mask js-mob-close"></div>
-                                <ul class="mob-nav">
+                <ul class="mob-nav">
                     <li class="mob-nav__item">
                         <a class="mob-nav__link" href="index.html">Home</a>
                     </li>
-                    <li class="mob-nav__item">
-                        <a class="mob-nav__link" href="about.html">About us</a>
+                    <li class="mob-nav__item js-slidedown">
+                        <a class="mob-nav__link js-slidedown-button" href="about.html">
+                            <span class="mob-nav__arrow">Pages</span>
+                        </a>
+                        <div class="slide-nav js-slidedown-hide">
+                            <ul class="slide-nav__list">
+                                <li class="slide-nav__item">
+                                    <a class="slide-nav__link" href="login.html">Login</a>
+                                </li>
+                                <li class="slide-nav__item">
+                                    <a class="slide-nav__link" href="registration.html">Registration</a>
+                                </li>
+                                <li class="slide-nav__item">
+                                    <a class="slide-nav__link" href="about.html">About us</a>
+                                </li>
+                                <li class="slide-nav__item">
+                                    <a class="slide-nav__link" href="collections.html">Collections</a>
+                                </li>
+                                <li class="slide-nav__item">
+                                    <a class="slide-nav__link" href="faq.html">FAQ</a>
+                                </li>
+                                <li class="slide-nav__item">
+                                    <a class="slide-nav__link" href="post.html">Post</a>
+                                </li>
+                                <li class="slide-nav__item">
+                                    <a class="slide-nav__link" href="404.html">404</a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
-                    <li class="mob-nav__item">
-                        <a class="mob-nav__link" href="shop.html">Shop</a>
+                    <li class="mob-nav__item js-slidedown">
+                        <a class="mob-nav__link js-slidedown-button" href="index.html#">
+                            <span class="mob-nav__arrow">Shop</span>
+                        </a>
+                        <div class="slide-nav js-slidedown-hide">
+                            <ul class="slide-nav__list">
+                                <li class="slide-nav__item">
+                                    <a class="slide-nav__link" href="my_profile.html">Profile</a>
+                                </li>
+                                <li class="slide-nav__item">
+                                    <a class="slide-nav__link" href="shop.html">Catalog</a>
+                                </li>
+                                <li class="slide-nav__item">
+                                    <a class="slide-nav__link" href="product_page.html">Product page</a>
+                                </li>
+                                <li class="slide-nav__item">
+                                    <a class="slide-nav__link" href="cart.html">Cart</a>
+                                </li>
+                                <li class="slide-nav__item">
+                                    <a class="slide-nav__link" href="checkout-1.html">Checkout 1</a>
+                                </li>
+                                <li class="slide-nav__item">
+                                    <a class="slide-nav__link" href="checkout-2.html">Checkout 2</a>
+                                </li>
+                                <li class="slide-nav__item">
+                                    <a class="slide-nav__link" href="checkout-3.html">Checkout 3</a>
+                                </li>
+                                <li class="slide-nav__item">
+                                    <a class="slide-nav__link" href="wishlist.html">Wishlist</a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                     <li class="mob-nav__item">
                         <a class="mob-nav__link" href="blog.html">Blog</a>
@@ -116,23 +226,24 @@
                     <li class="mob-nav__item">
                         <a class="mob-nav__link" href="contacts.html">Contact</a>
                     </li>
-                </ul><div class="hide-mob__socials">
+                </ul>
+                <div class="hide-mob__socials">
                     <ul class="socials__list socials__list_center">
                         <li class="socials__item">
                             <a class="socials__link" href="index.html#">Fb</a>
                         </li>
                         <li class="socials__item">
                             <a class="socials__link" href="index.html#">Tw</a>
-                        </li> 
+                        </li>
                         <li class="socials__item">
                             <a class="socials__link" href="index.html#">Ins</a>
                         </li>
                         <li class="socials__item">
                             <a class="socials__link" href="index.html#">Pt</a>
-                        </li>                                                                           
+                        </li>
                     </ul>
-                </div>                    
-            </div>              
+                </div>
+            </div>
         </div>
         <!-- MOBILE NAVIGATION END --> 
 
