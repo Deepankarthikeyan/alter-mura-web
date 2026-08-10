@@ -137,6 +137,11 @@ SEASON_SALE = {
 
 # Page banners cropped to show saree fabric, not face close-ups
 PAGE_BANNERS = {
+    "banner-about.jpg": {
+        "url": u("1717835943315-b818e90cb2a1", "center"),
+        "name": "Kanjivaram Silk Saree",
+        "anchor": "saree",
+    },
     "banner-contacts.jpg": {
         "url": u("1572470176170-98fa8abcb741", "center"),
         "name": "Silk Saree Drape",
